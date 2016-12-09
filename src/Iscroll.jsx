@@ -1,29 +1,29 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import IScroll from './iscroll-lib.js'
-import cx from 'classnames'
+import IScroll from './iscroll-lib.js';
+import cx from 'classnames';
 const  nofn = function (){};
-class Iscroll extends React.Component {
-  static defaultProps = {
-    mouseWheel: false,
-    probeType: 3,
-    className: "scrollable",
-    scroll: nofn,
-    slideDown: nofn,
-    slideUp: nofn
-  }
-  static propTypes = {
+
+const Iscroll = React.createClass({
+  propTypes: {
     mouseWheel: React.PropTypes.bool,
     probeType: React.PropTypes.number,
     className: React.PropTypes.string,
     scroll: React.PropTypes.func,
     slideDown: React.PropTypes.func,
     slideUp: React.PropTypes.func
-  }
+  },
 
-  constructor(props) {
-    super(props)
-  }
+  getDefaultProps() {
+    return {
+      mouseWheel: false,
+      probeType: 3,
+      className: "scrollable",
+      scroll: nofn,
+      slideDown: nofn,
+      slideUp: nofn
+    };
+  },
 
   componentDidMount() {
     let el = ReactDom.findDOMNode(this)
@@ -40,18 +40,19 @@ class Iscroll extends React.Component {
     this.iscroll.on("slideDown", this.props.slideDown.bind(this, this.iscroll));
 
     this.iscroll.on("slideUp", this.props.slideUp.bind(this, this.iscroll));
-  }
+  },
 
   componentWillReceiveProps() {
     if (this.iscroll) this.iscroll.refresh()
-  }
+  },
+
   componentWillUnmount() {
     if (this.iscroll) this.iscroll.destroy()
-  }
+  },
 
   render() {
     return (
-      <div className={cx('scrollable', this.props.className)}>
+      <div className={cx('scrollable'), this.props.className}>
         <div className="scroller">
           <div className="scroller-pullDown">
             <span className="icon-double-angle-down pull-down-icon"></span>
@@ -68,6 +69,6 @@ class Iscroll extends React.Component {
       </div>
     )
   }
-};
+});
 
 export default Iscroll

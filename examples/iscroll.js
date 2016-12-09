@@ -40,7 +40,6 @@ const Test = React.createClass({
     return (
       <Iscroll mouseWheel={false}
               probeType={3}
-              wrapperClass="wrapper"
               scroll={this._scroll}
               slideDown={this._slideDown}
               slideUp={this._slideUp}
