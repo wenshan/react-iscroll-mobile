@@ -19,7 +19,7 @@
     "iscroll"
   ],
   "config": {
-    "port": 8001
+    "port": 8005
   },
   "scripts": {
     "build": "rc-tools run build",
